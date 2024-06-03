@@ -1,3 +1,5 @@
+import ProgressBar from '@/utiils/prgoress-bar';
+import axios from 'axios';
 import Head from 'next/head';
 import React, { useState } from 'react';
 
@@ -6,6 +8,7 @@ const RemovePdfPage = () => {
     const [files, setFiles] = useState([]);
     const [uid, setUid] = useState("");
     const [loading, setLoading] = useState(false);
+    const [progressValue, setProgressValue] = useState(0)
 
 
     const handleFileChange = (event) => {
@@ -43,11 +46,27 @@ const RemovePdfPage = () => {
         try {
             setLoading(true)
 
-            const response = await fetch("/api/remove-pdf-pages", {
-                method: "POST",
-                body: formData,
-            });
-            const data = await response.json();
+
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data',
+                },
+                onUploadProgress: (progressEvent) => {
+                    const loaded = progressEvent.loaded; // Bytes uploaded for current file
+                    const total = progressEvent.total; // Total bytes to be uploaded for current file
+                    const fileProgress = Math.round((loaded / total) * 100);
+                    setProgressValue(fileProgress);
+                }
+            };
+
+            const { data } = await axios.post("/api/remove-pdf-pages", formData, config);
+
+
+            // const response = await fetch("/api/remove-pdf-pages", {
+            //     method: "POST",
+            //     body: formData,
+            // });
+            // const data = await response.json();
             setUid(data?.uid)
             setLoading(false)
 
@@ -95,12 +114,21 @@ const RemovePdfPage = () => {
                         <br />
                         <br />
 
+
+
                         <button style={{ padding: "10px 40px" }} type='submit'>
                             {
-                                loading ? "Loading" : "Upload"
+                                loading ?
+                                    "Loading"
+                                    : "Upload"
                             }
+
                         </button>
                     </form>
+                    {
+                        loading && <ProgressBar bgcolor={"#6a1b9a"} completed={progressValue} />
+                    }
+
                     <br />
                     <br />
 

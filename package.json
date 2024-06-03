@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
+    "axios": "^1.7.2",
     "formidable": "^2.1.1",
     "jimp": "^0.22.8",
     "jszip": "^3.10.1",
