@@ -27,7 +27,6 @@ const RemovePdfPage = () => {
             document.body.appendChild(a);
             a.click();
             a.remove();
-            setFiles([])
         } else {
             console.log("Download failed");
         }
@@ -62,7 +61,6 @@ const RemovePdfPage = () => {
 
             const { data } = await axios.post("/api/remove-pdf-pages", formData, config);
 
-
             // const response = await fetch("/api/remove-pdf-pages", {
             //     method: "POST",
             //     body: formData,
@@ -70,7 +68,6 @@ const RemovePdfPage = () => {
             // const data = await response.json();
             setUid(data?.uid)
             setLoading(false)
-
         } catch (error) {
             console.log(error);
         }

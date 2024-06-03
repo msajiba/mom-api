@@ -46,7 +46,7 @@ const RemovePdfPage = () => {
                 body: formData,
             });
             const data = await response.json();
-            setUid(data.uid[0])
+            setUid(data.uid)
 
         } catch (error) {
             console.log(error);
