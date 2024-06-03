@@ -1,0 +1,32 @@
+{
+  "name": "mom-api",
+  "version": "0.1.0",
+  "private": true,
+  "cacheDirectories": [
+    "node_modules/",
+    ".next/cache/"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "formidable": "^2.1.1",
+    "jimp": "^0.22.8",
+    "jszip": "^3.10.1",
+    "next": "14.2.3",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.13.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "prisma": "^5.14.0"
+  }
+}
