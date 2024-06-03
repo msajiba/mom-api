@@ -42,7 +42,9 @@ const handler = async (req, res) => {
 
     const reqPages = result.fields.pages;
     const pagesArray = reqPages.split(",");
-    const pages = pagesArray.map(Number);
+    const pages = pagesArray.map(Number).reverse();
+
+    console.log("pages", pages);
 
     const fileProcessingPromises = fileKeys.map(async (fileKey) => {
       const file = result.files[fileKey];

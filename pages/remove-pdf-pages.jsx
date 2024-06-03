@@ -27,6 +27,7 @@ const RemovePdfPage = () => {
             document.body.appendChild(a);
             a.click();
             a.remove();
+            setFiles([])
         } else {
             console.log("Download failed");
         }
